@@ -42,8 +42,8 @@ export default function App() {
   };
 
   React.useEffect(() => {
+    // Backwards compatability, ensure that all items have an id
     if (items.length > 0 && items.some((item) => !item.id)) {
-      // Backwards compatability, ensure that all items have an id
       setItems(
         items.map((item) => (!item.id ? { ...item, id: uuid() } : item))
       );
