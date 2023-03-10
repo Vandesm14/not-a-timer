@@ -1,5 +1,5 @@
 import { EditableText, HTMLTable } from '@blueprintjs/core';
-import { Item } from './types';
+import { Item } from '../types';
 
 interface ItemTableProps {
   items: Item[];
@@ -16,10 +16,9 @@ export default function ItemTable({
     <HTMLTable>
       <thead>
         <tr>
-          <th>ts</th>
-          <th>note</th>
-          <th>project</th>
-          <th>ctrl</th>
+          <th>Timestamp</th>
+          <th>Note</th>
+          <th>Remove</th>
         </tr>
       </thead>
       <tbody>
@@ -40,7 +39,6 @@ export default function ItemTable({
                       confirmOnEnterKey
                     />
                   </td>
-                  <td>{item.project}</td>
                   <td>
                     <button onClick={() => removeItem(item.id)}>X</button>
                   </td>
