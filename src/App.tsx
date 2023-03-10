@@ -80,9 +80,9 @@ export default function App() {
         onChange={handleChange}
         value={note}
       />
-      <section>
+      <Flex>
         <Button onClick={() => download()}>Download</Button>
-      </section>
+      </Flex>
       <HTMLTable>
         <thead>
           <tr>
