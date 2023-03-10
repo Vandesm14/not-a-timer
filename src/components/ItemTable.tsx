@@ -34,6 +34,7 @@ export default function ItemTable({
                   item={item}
                   removeItem={removeItem}
                   editItem={editItem}
+                  key={item.id}
                 />
               ))
           : 'No items'}
