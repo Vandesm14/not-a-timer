@@ -1,7 +1,7 @@
 import { Button, MenuItem } from '@blueprintjs/core';
 import { ItemRenderer, Select2 } from '@blueprintjs/select';
 import React from 'react';
-import Flex from './compose/Flex';
+import Flex from '../compose/Flex';
 
 const renderItem: ItemRenderer<string> = (
   date,

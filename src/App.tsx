@@ -4,11 +4,11 @@ import useLocalStorageState from 'use-local-storage-state';
 import { Button, FileInput } from '@blueprintjs/core';
 import useFileDownload from './hooks/useFileDownload';
 import Flex from './compose/Flex';
-import ItemTable from './ItemTable';
+import ItemTable from './components/ItemTable';
 import { Item } from './types';
 import { uuid } from './uuid';
-import ItemInput from './ItemInput';
-import DateSelector from './DateSelector';
+import ItemInput from './components/ItemInput';
+import DateSelector from './components/DateSelector';
 
 const dateToDMY = (date: Date) => {
   const d = date.getDate();

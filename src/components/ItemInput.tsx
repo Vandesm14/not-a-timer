@@ -1,7 +1,7 @@
 import { InputGroup } from '@blueprintjs/core';
 import React from 'react';
-import { Item } from './types';
-import { uuid } from './uuid';
+import { Item } from '../types';
+import { uuid } from '../uuid';
 
 export interface ItemInputProps {
   onConfirm: (item: Item) => void;
