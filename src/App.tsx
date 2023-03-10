@@ -50,9 +50,9 @@ export default function App() {
     setItems((items) => items.filter((item) => item.id !== id));
   };
 
-  const editItem = (id: string, note: string) => {
+  const editItem = (id: string, partial: Partial<Item>) => {
     setItems((items) =>
-      items.map((item) => (item.id === id ? { ...item, note } : item))
+      items.map((item) => (item.id === id ? { ...item, ...partial } : item))
     );
   };
 

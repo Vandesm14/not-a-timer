@@ -1,10 +1,11 @@
 import { EditableText, HTMLTable } from '@blueprintjs/core';
 import { Item } from '../types';
+import ItemRow from './ItemRow';
 
 interface ItemTableProps {
   items: Item[];
   removeItem: (id: string) => void;
-  editItem: (id: string, note: string) => void;
+  editItem: (id: string, partial: Partial<Item>) => void;
 }
 
 export default function ItemTable({
@@ -29,20 +30,11 @@ export default function ItemTable({
                 (a, b) => new Date(b.ts).getTime() - new Date(a.ts).getTime()
               )
               .map((item) => (
-                <tr key={item.id}>
-                  <td>{new Date(item.ts).toLocaleString()}</td>
-                  <td>
-                    <EditableText
-                      defaultValue={item.note}
-                      onChange={(note) => editItem(item.id, note)}
-                      selectAllOnFocus
-                      confirmOnEnterKey
-                    />
-                  </td>
-                  <td>
-                    <button onClick={() => removeItem(item.id)}>X</button>
-                  </td>
-                </tr>
+                <ItemRow
+                  item={item}
+                  removeItem={removeItem}
+                  editItem={editItem}
+                />
               ))
           : 'No items'}
       </tbody>
