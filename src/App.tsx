@@ -92,7 +92,6 @@ export default function App() {
               handleFileUpload={handleFileUpload}
             />
           }
-          interactionKind="hover"
         >
           <Button icon="menu" />
         </Popover2>

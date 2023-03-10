@@ -32,6 +32,7 @@ export default function ItemInput({ onConfirm }: ItemInputProps) {
       onKeyDown={handleKeyDown}
       onChange={handleChange}
       value={note}
+      large
     />
   );
 }
