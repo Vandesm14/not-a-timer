@@ -1,18 +1,18 @@
 import { useState } from 'react';
 
-type FileDownloadHook = {
+export type FileDownloadHook = {
   setValue: (value: string) => void;
-  download: () => void;
+  download: (filename: string) => void;
 };
 
-const useFileDownload = (name: string): FileDownloadHook => {
+const useFileDownload = (): FileDownloadHook => {
   const [value, setValue] = useState('');
 
-  const download = () => {
+  const download: FileDownloadHook['download'] = (filename) => {
     const element = document.createElement('a');
     const file = new Blob([value], { type: 'text/plain' });
     element.href = URL.createObjectURL(file);
-    element.download = name;
+    element.download = filename;
     document.body.appendChild(element);
     element.click();
     document.body.removeChild(element);
