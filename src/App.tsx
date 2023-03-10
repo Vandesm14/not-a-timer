@@ -8,12 +8,37 @@ import ItemTable from './ItemTable';
 import { Item } from './types';
 import { uuid } from './uuid';
 import ItemInput from './ItemInput';
+import DateSelector from './DateSelector';
+
+const dateToDMY = (date: Date) => {
+  const d = date.getDate();
+  const m = date.getMonth() + 1;
+  const y = date.getFullYear();
+  return d + '/' + m + '/' + y;
+};
 
 export default function App() {
   const [items, setItems] = useLocalStorageState<Item[]>('items', {
     defaultValue: [],
   });
   const { setValue, download } = useFileDownload('items.json');
+  const [dateFilter, setDateFilter] = React.useState<string | null>(null);
+  const filteredItems = React.useMemo(() => {
+    if (dateFilter) {
+      return items.filter(
+        (item) => dateToDMY(new Date(item.ts)) === dateFilter
+      );
+    }
+    return items;
+  }, [items, dateFilter]);
+
+  const allDates = React.useMemo(() => {
+    return items
+      .slice()
+      .sort((a, b) => new Date(b.ts).getTime() - new Date(a.ts).getTime())
+      .map((item) => dateToDMY(new Date(item.ts)))
+      .filter((v, i, a) => a.indexOf(v) === i);
+  }, [items]);
 
   const addItem = (item: Item) => {
     setItems((items) => [...items, item]);
@@ -60,8 +85,13 @@ export default function App() {
       <Flex>
         <Button onClick={() => download()}>Download</Button>
         <FileInput onInputChange={handleFileUpload} />
+        <DateSelector dates={allDates} onChange={setDateFilter} />
       </Flex>
-      <ItemTable items={items} removeItem={removeItem} editItem={editItem} />
+      <ItemTable
+        items={filteredItems}
+        removeItem={removeItem}
+        editItem={editItem}
+      />
     </Flex>
   );
 }

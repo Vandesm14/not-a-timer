@@ -2,6 +2,8 @@ lockfileVersion: 5.4
 
 specifiers:
   '@blueprintjs/core': ^4.17.6
+  '@blueprintjs/popover2': ^1.13.10
+  '@blueprintjs/select': ^4.9.10
   '@emotion/css': ^11.10.6
   '@types/react': ^18.0.17
   '@types/react-dom': ^18.0.6
@@ -18,6 +20,8 @@ specifiers:
 
 dependencies:
   '@blueprintjs/core': 4.17.6_zula6vjvt3wdocc4mwcxqa6nzi
+  '@blueprintjs/popover2': 1.13.10_zula6vjvt3wdocc4mwcxqa6nzi
+  '@blueprintjs/select': 4.9.10_zula6vjvt3wdocc4mwcxqa6nzi
   '@emotion/css': 11.10.6
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
@@ -345,6 +349,47 @@ packages:
       tslib: 2.3.1
     dev: false
 
+  /@blueprintjs/popover2/1.13.10_zula6vjvt3wdocc4mwcxqa6nzi:
+    resolution: {integrity: sha512-ohdO3F9MUZXDaBNYFi+xrlhDWl6GWg9/zl8VQTzhk5ny5kuGJsU7cPAeTGNyrXkR8PMRbTWKfFFc/R/H4qUo/g==}
+    peerDependencies:
+      '@types/react': ^16.14.32 || 17 || 18
+      react: ^16.8 || 17 || 18
+      react-dom: ^16.8 || 17 || 18
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
+    dependencies:
+      '@blueprintjs/core': 4.17.6_zula6vjvt3wdocc4mwcxqa6nzi
+      '@juggle/resize-observer': 3.4.0
+      '@popperjs/core': 2.11.6
+      '@types/react': 18.0.28
+      classnames: 2.3.2
+      dom4: 2.1.6
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
+      react-popper: 2.3.0_r6q5zrenym2zg7je7hgi674bti
+      tslib: 2.3.1
+    dev: false
+
+  /@blueprintjs/select/4.9.10_zula6vjvt3wdocc4mwcxqa6nzi:
+    resolution: {integrity: sha512-LKPgpqZsrClIDbZWM+UcHuQYuLfYPm8hOsNtPRGflKHKgkg16XgihgtXi/vtNpdCPGmOxFiEtsHKmuD775Txvg==}
+    peerDependencies:
+      '@types/react': ^16.14.32 || 17 || 18
+      react: ^16.8 || 17 || 18
+      react-dom: ^16.8 || 17 || 18
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
+    dependencies:
+      '@blueprintjs/core': 4.17.6_zula6vjvt3wdocc4mwcxqa6nzi
+      '@blueprintjs/popover2': 1.13.10_zula6vjvt3wdocc4mwcxqa6nzi
+      '@types/react': 18.0.28
+      classnames: 2.3.2
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
+      tslib: 2.3.1
+    dev: false
+
   /@emotion/babel-plugin/11.10.6:
     resolution: {integrity: sha512-p2dAqtVrkhSa7xz1u/m9eHYdLi+en8NowrmXeF/dKtJpU8lCWli8RUAati7NcSl0afsBott48pdnANuD0wh9QQ==}
     dependencies:
@@ -549,6 +594,10 @@ packages:
       '@nodelib/fs.scandir': 2.1.5
       fastq: 1.15.0
     dev: true
+
+  /@popperjs/core/2.11.6:
+    resolution: {integrity: sha512-50/17A98tWUfQ176raKiOGXuYpLyyVMkxxG6oylzL3BPOlA6ADGdK7EYunSa4I064xerltq9TGXs8HmOk5E+vw==}
+    dev: false
 
   /@types/dom4/2.0.2:
     resolution: {integrity: sha512-Rt4IC1T7xkCWa0OG1oSsPa0iqnxlDeQqKXZAHrQGLb7wFGncWm85MaxKUjAGejOrUynOgWlFi4c6S6IyJwoK4g==}
@@ -1745,6 +1794,10 @@ packages:
       scheduler: 0.23.0
     dev: false
 
+  /react-fast-compare/3.2.0:
+    resolution: {integrity: sha512-rtGImPZ0YyLrscKI9xTpV8psd6I8VAtjKCzQDlzyDvqJA8XOW78TXYQwNRNd8g8JZnDu8q9Fu/1v4HPAVwVdHA==}
+    dev: false
+
   /react-is/16.13.1:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
     dev: false
@@ -1761,6 +1814,20 @@ packages:
       prop-types: 15.8.1
       react: 18.2.0
       typed-styles: 0.0.7
+      warning: 4.0.3
+    dev: false
+
+  /react-popper/2.3.0_r6q5zrenym2zg7je7hgi674bti:
+    resolution: {integrity: sha512-e1hj8lL3uM+sgSR4Lxzn5h1GxBlpa4CQz0XLF8kx4MDrDRWY0Ena4c97PUeSX9i5W3UAfDP0z0FXCTQkoXUl3Q==}
+    peerDependencies:
+      '@popperjs/core': ^2.0.0
+      react: ^16.8.0 || ^17 || ^18
+      react-dom: ^16.8.0 || ^17 || ^18
+    dependencies:
+      '@popperjs/core': 2.11.6
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
+      react-fast-compare: 3.2.0
       warning: 4.0.3
     dev: false
 
