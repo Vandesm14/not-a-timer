@@ -15,7 +15,6 @@ const renderItem: ItemRenderer<string> = (
       active={modifiers.active}
       disabled={modifiers.disabled}
       key={date}
-      label={date}
       onClick={handleClick}
       onFocus={handleFocus}
       roleStructure="listoption"
@@ -30,22 +29,31 @@ interface DateSelectorProps {
 }
 
 export default function DateSelector({ dates, onChange }: DateSelectorProps) {
-  const [selectedDate, setSelectedDate] = React.useState<string | null>(null);
+  const [selectedDate, setSelectedDate] = React.useState<string>('All');
+
+  const items = React.useMemo(() => {
+    return ['All', ...dates];
+  }, [dates]);
 
   const handleChange = (date: string) => {
+    if (date === 'All') {
+      handleClear();
+      return;
+    }
+
     onChange(date);
     setSelectedDate(date);
   };
 
   const handleClear = () => {
     onChange(null);
-    setSelectedDate(null);
+    setSelectedDate('All');
   };
 
   return (
     <Flex>
       <Select2
-        items={dates}
+        items={items}
         itemRenderer={renderItem}
         onItemSelect={handleChange}
       >
@@ -54,7 +62,6 @@ export default function DateSelector({ dates, onChange }: DateSelectorProps) {
           rightIcon="double-caret-vertical"
         />
       </Select2>
-      <Button icon="cross" minimal onClick={() => handleClear()} />
     </Flex>
   );
 }
