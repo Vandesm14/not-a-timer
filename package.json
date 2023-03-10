@@ -16,6 +16,8 @@
     "@blueprintjs/popover2": "^1.13.10",
     "@blueprintjs/select": "^4.9.10",
     "@emotion/css": "^11.10.6",
+    "@typescript-eslint/eslint-plugin": "^5.54.1",
+    "@typescript-eslint/parser": "^5.54.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "use-local-storage-state": "^18.2.1"

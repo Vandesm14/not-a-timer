@@ -1,7 +1,7 @@
 import { createRoot } from 'react-dom/client';
 import * as React from 'react';
 import useLocalStorageState from 'use-local-storage-state';
-import { Button, FileInput, Navbar } from '@blueprintjs/core';
+import { Button } from '@blueprintjs/core';
 import useFileDownload from './hooks/useFileDownload';
 import Flex from './compose/Flex';
 import ItemTable from './components/ItemTable';
