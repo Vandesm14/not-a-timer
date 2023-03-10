@@ -1,16 +1,18 @@
 import * as flex from './styles';
-import { Div, DivProps } from './Div';
+import Div, { DivProps } from './Div';
 
 type FlexProps = DivProps & {
   direction?: keyof typeof flex.flex;
 };
 
-export const Flex = ({ direction, css, ...rest }: FlexProps) => (
-  <Div
-    css={{
-      ...flex.flex[direction ?? 'row'],
-      ...(css ?? {}),
-    }}
-    {...rest}
-  />
-);
+export default function Flex({ direction, css, ...rest }: FlexProps) {
+  return (
+    <Div
+      css={{
+        ...flex.flex[direction ?? 'row'],
+        ...(css ?? {}),
+      }}
+      {...rest}
+    />
+  );
+}

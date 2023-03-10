@@ -5,14 +5,14 @@ type FileDownloadHook = {
   download: () => void;
 };
 
-const useFileDownload = (): FileDownloadHook => {
+const useFileDownload = (name: string): FileDownloadHook => {
   const [value, setValue] = useState('');
 
   const download = () => {
     const element = document.createElement('a');
     const file = new Blob([value], { type: 'text/plain' });
     element.href = URL.createObjectURL(file);
-    element.download = 'download.txt';
+    element.download = name;
     document.body.appendChild(element);
     element.click();
     document.body.removeChild(element);
