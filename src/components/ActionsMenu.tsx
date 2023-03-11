@@ -8,11 +8,15 @@ import { FileDownloadHook } from '../hooks/useFileDownload';
 interface ActionsMenuProps {
   download: FileDownloadHook['download'];
   handleFileUpload: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  undo: () => void;
+  redo: () => void;
 }
 
 export default function ActionsMenu({
   download,
   handleFileUpload,
+  undo,
+  redo,
 }: ActionsMenuProps) {
   const fileInputRef = React.useRef<HTMLInputElement>(null);
 
@@ -23,12 +27,24 @@ export default function ActionsMenu({
           download(`log-${new Date().toISOString().replaceAll(':', '-')}.json`)
         }
         alignText="left"
+        icon="download"
       >
         Download
       </Button>
-      <Button onClick={() => fileInputRef.current?.click()} alignText="left">
+      <Button
+        onClick={() => fileInputRef.current?.click()}
+        alignText="left"
+        icon="upload"
+      >
         Upload
       </Button>
+      <Button onClick={() => undo()} alignText="left" icon="undo">
+        Undo
+      </Button>
+      <Button onClick={() => redo()} alignText="left" icon="redo">
+        Redo
+      </Button>
+
       <Div
         css={{
           display: 'none',

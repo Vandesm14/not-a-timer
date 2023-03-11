@@ -11,6 +11,8 @@ import ItemInput from './components/ItemInput';
 import DateSelector from './components/DateSelector';
 import { Popover2 } from '@blueprintjs/popover2';
 import ActionsMenu from './components/ActionsMenu';
+import useUndoStates from './hooks/useUndoStates';
+import useToaster from './hooks/useToaster';
 
 const dateToDMY = (date: Date) => {
   const d = date.getDate();
@@ -23,6 +25,10 @@ export default function App() {
   const [items, setItems] = useLocalStorageState<Item[]>('items', {
     defaultValue: [],
   });
+  const { addToast, toaster } = useToaster();
+  const { undo, redo, canUndo, canRedo, addState, currentState } =
+    useUndoStates<Item[]>();
+
   const { setValue, download } = useFileDownload();
   const [dateFilter, setDateFilter] = React.useState<string | null>(null);
   const filteredItems = React.useMemo(() => {
@@ -43,14 +49,17 @@ export default function App() {
   }, [items]);
 
   const addItem = (item: Item) => {
+    addState(structuredClone(items));
     setItems((items) => [...items, item]);
   };
 
   const removeItem = (id: string) => {
+    addState(structuredClone(items));
     setItems((items) => items.filter((item) => item.id !== id));
   };
 
   const editItem = (id: string, partial: Partial<Item>) => {
+    addState(structuredClone(items));
     setItems((items) =>
       items.map((item) => (item.id === id ? { ...item, ...partial } : item))
     );
@@ -59,6 +68,8 @@ export default function App() {
   const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
+      addState(structuredClone(items));
+
       const reader = new FileReader();
       reader.onload = (e) => {
         const items = JSON.parse(e.target?.result as string);
@@ -81,8 +92,17 @@ export default function App() {
     setValue(JSON.stringify(items));
   }, [items]);
 
+  const handleUndo = () => {
+    addToast(undo(setItems) ? 'Undo successful' : 'Nothing to undo');
+  };
+
+  const handleRedo = () => {
+    addToast(redo(setItems) ? 'Redo successful' : 'Nothing to redo');
+  };
+
   return (
     <Flex direction="col" css={{ width: 'max-content' }}>
+      {toaster}
       <ItemInput onConfirm={addItem} />
       <Flex css={{ gap: '8px', padding: '8px' }}>
         <Popover2
@@ -90,6 +110,8 @@ export default function App() {
             <ActionsMenu
               download={download}
               handleFileUpload={handleFileUpload}
+              undo={handleUndo}
+              redo={handleRedo}
             />
           }
         >
